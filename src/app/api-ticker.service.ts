@@ -6,38 +6,39 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import * as _ from 'lodash';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ApiTickerService {
   constructor(private httpIntercept: HttpClient) {}
-
+  private childMethodCall = new Subject<any>();
+  componentMehtodCalled$ = this.childMethodCall.asObservable();
   currencies(data): Observable<any> {
-    return this.httpIntercept.get(environment.apiUrl + `ticker/${data}`)
-          .map(res => {
-              console.log(res);
-              // const array2 = [];
-
-              // _.forEach(res, (value, key) => {
-              //     const array = [];
-              //     _.forEach(value, (value2, key2) => {
-              //       // console.log(value2)
-              //         array.push({ key: key2,
-              //           value: value2,
-              //           show: key2 === 'name' ? true :
-              //                 key2 === '24h_volume_usd' ? true :
-              //                 key2 === 'market_cap_usd' ? true :
-              //                 key2 === 'total_supply' ? true :
-              //                 key2 === 'percent_change_24h' ? true :
-              //                 key2 === 'percent_change_7d' ? true :
-              //                 key2 === 'price_usd' ? true : false
-              //         });
-              //     });
-              //     array2.push(array);
-              // });
-              return res;
-          })
-          .catch(err => {
-              return Observable.throw(err || 'Server error');
-          });
+    return this.httpIntercept.get(environment.apiUrl + `ticker/${data}/`)
+        .map(res => {
+            this.childMethodCall.next(res);
+            return res;
+        })
+        .catch(err => {
+            return Observable.throw(err || 'Server error');
+        });
+  }
+  specificCurrency(currencyName): Observable<any> {
+    return this.httpIntercept.get(environment.apiUrl + `ticker/${currencyName}/`)
+        .map(res => {
+            return res;
+        })
+        .catch(err => {
+            return Observable.throw(err || 'Server error');
+        });
+  }
+  chart(name) {
+       return this.httpIntercept.get('https://www.highcharts.com/samples/data/' + name+'-c.json')
+        .map(res => {
+            return res;
+        })
+        .catch(err => {
+            return Observable.throw(err || 'Server error');
+        });
   }
 }

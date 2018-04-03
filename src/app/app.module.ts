@@ -6,19 +6,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app-routes';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
 import { ApiTickerService } from './api-ticker.service';
 import { IntercepterHttp } from './http.interceptor';
 import { SpecificCurrencyComponent } from './specific-currency/specific-currency.component';
-import { CurrenciesComponent } from './currencies/currencies.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    CurrenciesComponent,
     SpecificCurrencyComponent,
-    CurrenciesComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

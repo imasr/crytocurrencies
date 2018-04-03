@@ -1,17 +1,16 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
 import { SpecificCurrencyComponent } from './specific-currency/specific-currency.component';
 
 export const appRoutes: Routes = [
     {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'dashboard'
+        component: CurrenciesComponent
     }, {
-        path: 'dashboard',
-        component: DashboardComponent,
+        path: 'currencies',
+        component: CurrenciesComponent,
     },  {
-        path: 'currencies/:id',
+        path: 'currencies/:currencyName',
         component: SpecificCurrencyComponent,
-    }
+    } 
 ];

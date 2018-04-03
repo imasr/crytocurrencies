@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app-routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpClient } from 'selenium-webdriver/http';
-import { ApiTicketService } from './api-ticket.service';
+import { ApiTickerService } from './api-ticker.service';
+import { IntercepterHttp } from './http.interceptor';
 
 
 @NgModule({
@@ -18,9 +19,17 @@ import { ApiTicketService } from './api-ticket.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [ApiTicketService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: IntercepterHttp,
+      multi: true
+    },
+    ApiTickerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

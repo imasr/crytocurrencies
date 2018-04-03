@@ -9,12 +9,16 @@ import { appRoutes } from './app-routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ApiTickerService } from './api-ticker.service';
 import { IntercepterHttp } from './http.interceptor';
+import { SpecificCurrencyComponent } from './specific-currency/specific-currency.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    SpecificCurrencyComponent,
+    CurrenciesComponent
   ],
   imports: [
     BrowserModule,

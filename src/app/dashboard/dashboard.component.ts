@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiTickerService } from '../api-ticker.service';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import * as _ from 'lodash';
 
@@ -13,10 +14,9 @@ export class DashboardComponent implements OnInit {
   start = 0;
   currency: any;
   currentyType = "usd";
-  data: any;
   currencyList = [];
-  filteredList = [];
-  constructor(private apiService: ApiTickerService) {}
+
+  constructor(private apiService: ApiTickerService, private router: Router) {}
 
   ngOnInit() {
     const data = `?start=${this.start}&limit=${this.limit}`;
@@ -28,14 +28,5 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-  filter(event) {
-    if (event !== '') {
-      this.filteredList = this.currencyList.filter(function(el) {
-          return el.toLowerCase().indexOf(event.toLowerCase()) > -1;
-        }.bind(this));
-    } else {
-      this.filteredList = [];
-    }
-  }
-  onSearch() {}
+
 }

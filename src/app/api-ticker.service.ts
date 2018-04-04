@@ -41,4 +41,13 @@ export class ApiTickerService {
             return Observable.throw(err || 'Server error');
         });
   }
+  globalData() {
+        return this.httpIntercept.get(`https://graphs2.coinmarketcap.com/v1/global/`)
+        .map(res => {
+            return res;
+        })
+        .catch(err => {
+            return Observable.throw(err || 'Server error');
+        });
+    }
 }

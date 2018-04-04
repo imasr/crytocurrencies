@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiTickerService } from '../api-ticker.service';
 import * as _ from 'lodash';
+import { Config } from '../../config/config';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,9 +14,12 @@ export class NavbarComponent implements OnInit {
   currencyList = [];
   filteredList = [];
   search: any;
+  global: any;
+  convertCurrency: any;
   constructor(private router: Router, private apiEvent: ApiTickerService) {}
 
   ngOnInit() {
+      this.convertCurrency = Config['currencyData'];
       this.apiEvent.componentMehtodCalled$.subscribe(res => {
         let array=[];
         _.forEach(res, (val, key) => {
@@ -22,6 +27,9 @@ export class NavbarComponent implements OnInit {
         });
         this.currencyList=array;
         console.log(this.currencyList);        
+      })
+      this.apiEvent.globalData().subscribe(res => {
+          this.global=res;
       })
   }
   filter(event) {

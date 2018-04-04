@@ -2,3 +2,24 @@
   padding: 15px;
   margin: 0px;
 }
+.nameCurre{
+  text-transform: capitalize;
+  font-size: 28px;
+}
+.nameCurre span{
+  font-size: 18px;
+  color: darkgray;
+}
+.padd{
+  padding: 20px 0px 20px 0px;
+}
+.loading{
+  background:url(https://api.coinmarketcap.com/static/cloud/img/loading.svg);
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+}
+.load{
+  width: 50px;
+  margin: auto;
+}

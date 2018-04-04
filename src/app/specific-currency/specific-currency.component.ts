@@ -15,7 +15,8 @@ import * as _ from 'lodash';
 export class SpecificCurrencyComponent implements OnInit  {
   currency: any;
   currencyName; any;
-  currentyType = 'usd';
+  currencyType = 'usd';
+  loader: any;
   constructor(private _activatedRoute: ActivatedRoute, private apiService: ApiTickerService) { }
 
   ngOnInit() {
@@ -25,21 +26,21 @@ export class SpecificCurrencyComponent implements OnInit  {
     this._activatedRoute.paramMap.subscribe((params: ParamMap) => {
       this.currencyName = params.get('currencyName');
       this.apiService.specificCurrency(this.currencyName).subscribe(res => {
-          this.currency = res;
-          this.getApecific(this.currencyName);
+          this.currency = res[0];
+          this.graphData(this.currencyName);
       });
     });
   }
 
-  getApecific(currency) {
-
+  graphData(currency) {
+    this.loader=true;
     let seriesOptions = [];
     let seriesCounter = 0;
     let names = ['market_cap_by_available_supply', 'price_btc', 'price_btc', 'volume_usd'];
 
-    this.apiService.chart(currency).subscribe(graphData => {
+    this.apiService.chart(currency).subscribe(data => {
         _.forEach(names, (name, key) => {
-             seriesOptions[key] = { name: name, data: graphData[name] };
+             seriesOptions[key] = { name: name, data: data[name] };
 
              seriesCounter += 1;
 
@@ -52,6 +53,7 @@ export class SpecificCurrencyComponent implements OnInit  {
   }
 
   chartOn(seriesOptions) {
+      this.loader=false;
       Highcharts.stockChart('container', {
 
         rangeSelector: {

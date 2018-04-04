@@ -32,8 +32,8 @@ export class ApiTickerService {
             return Observable.throw(err || 'Server error');
         });
   }
-  chart(name) {
-       return this.httpIntercept.get('https://www.highcharts.com/samples/data/' + name+'-c.json')
+  chart(currencyName) {
+       return this.httpIntercept.get(`https://graphs2.coinmarketcap.com/currencies/${currencyName}/`)
         .map(res => {
             return res;
         })

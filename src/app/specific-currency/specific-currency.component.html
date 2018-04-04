@@ -1,1 +1,31 @@
-<div id="container" style="height: 400px"></div>
+<div class="row">
+<div class="col-md-4">
+  <div *ngFor="let data of currency; let index=index;">
+    <p>{{data.id}}</p>
+  </div>
+</div>
+
+<div class="col-md-8" style="padding:15px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Market Cap </th>
+            <th scope="col">Volume (24h)</th>
+            <th scope="col">Circulating Supply</th>
+            <th scope="col">Total Supply</th>
+            <th scope="col">Max Supply</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of currency; let index=index;">
+            <td *ngIf="data['market_cap_'+currentyType]">{{data['market_cap_'+currentyType]}}</td>
+            <td>{{data['24h_volume_'+currentyType]}}</td>
+            <td>{{data.available_supply}} %</td>
+            <td>{{data.total_supply}}</td>
+            <td>{{data.max_supply}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  </div>
+<div id="container" class="col-md-10" style="height: 500px"></div>

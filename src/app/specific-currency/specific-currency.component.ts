@@ -36,7 +36,7 @@ export class SpecificCurrencyComponent implements OnInit  {
     this.loader = true;
     const seriesOptions = [];
     let seriesCounter = 0;
-    const names = ['market_cap_by_available_supply', 'price_btc', 'price_btc', 'volume_usd'];
+    const names = ['market_cap_by_available_supply', 'price_btc', 'price_usd', 'volume_usd'];
 
     this.apiService.chart(currency).subscribe(data => {
         _.forEach(names, (name, key) => {

@@ -42,7 +42,7 @@ export class ApiTickerService {
         });
   }
   globalData() {
-        return this.httpIntercept.get(`https://graphs2.coinmarketcap.com/v1/global/`)
+        return this.httpIntercept.get(environment.apiUrl + `global/`)
         .map(res => {
             return res;
         })

@@ -1,26 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app-routes';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpClient } from 'selenium-webdriver/http';
-import { ApiTicketService } from './api-ticket.service';
+import { CurrenciesComponent } from './currencies/currencies.component';
+import { ApiTickerService } from './api-ticker.service';
+import { IntercepterHttp } from './http.interceptor';
+import { SpecificCurrencyComponent } from './specific-currency/specific-currency.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    CurrenciesComponent,
+    SpecificCurrencyComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [ApiTicketService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: IntercepterHttp,
+      multi: true
+    },
+    ApiTickerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

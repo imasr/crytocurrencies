@@ -1,0 +1,38 @@
+<h3 style="text-align:center; padding:30px;">Top 100 Cryptocurrencies by Market Capitalization</h3>
+  <div class="right">
+      <ul class="pagination top-paginator">
+        <li><a (click)="previous()" *ngIf="start>0">← Previous 100</a></li>
+        <li><a (click)="next()">Next 100 →</a></li>
+        <li>
+        <a (click)="all()">View All</a>
+        </li>
+      </ul>
+  </div>
+  <div style="padding:15px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="border">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Market Cap </th>
+            <th scope="col">Price</th>
+            <th scope="col">Volume (24h)</th>
+            <th scope="col">Circulating Supply</th>
+            <th scope="col">Change (24h)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of currency; let index=index;">
+            <th scope="row" class="border">{{start+index+1}}</th>
+            <td><a [routerLink]="['/currencies/',data.id]">{{data.name}}</a></td>
+            <td *ngIf="data['market_cap_'+currentyType]">{{data['market_cap_'+currentyType]}}</td>
+            <td>{{data['price_'+currentyType] | currency:'INR'}}</td>
+            <td>{{data['24h_volume_'+currentyType]}}</td>
+            <td>{{data.total_supply}}</td>
+            <td [ngStyle]="{'color':data.percent_change_24h > 0 ? 'green':'red'}">
+                  {{data.percent_change_24h}} %
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

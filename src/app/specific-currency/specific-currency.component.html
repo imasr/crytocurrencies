@@ -1,0 +1,43 @@
+<div class="row">
+<div class="col-md-4">
+  <div *ngIf="currency" class="padd">
+    <h5 class="nameCurre">{{currency.id}} <span> ({{currency.symbol}})</span></h5>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <div *ngIf="currency" class="padd">
+    <span style="font-size:24px">{{currency.price_usd | currency:'USD'}}</span> {{currencyType| uppercase}} 
+    <span [ngStyle]="{'color':currency.percent_change_24h > 0 ? 'green':'red'}">
+      ({{currency.percent_change_24h}} %)
+    </span>
+  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Market Cap </th>
+          <th scope="col">Volume (24h)</th>
+          <th scope="col">Circulating Supply</th>
+          <th scope="col">Total Supply</th>
+          <th scope="col">Max Supply</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="currency">
+          <td>{{currency['market_cap_'+currencyType]}}</td>
+          <td>{{currency['24h_volume_'+currencyType]}}</td>
+          <td>{{currency.available_supply}} %</td>
+          <td>{{currency.total_supply}}</td>
+          <td>{{currency.max_supply}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+<div *ngIf="loader" style="text-align:center">
+  Loading data from server...
+  <div class="load">
+    <span class="loading"></span>
+  </div>
+</div>
+<div id="container" class="col-md-10" style="height: 500px"></div>

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api.coinmarketcap.com/v1/'
+  apiUrl: 'https://api.coinmarketcap.com/v1/'
 };

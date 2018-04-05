@@ -1,0 +1,88 @@
+<div class="outer-container global-stats desktop hidden-xs">
+    <div class="global-stats desktop">
+      <div class="row" *ngIf="global">
+        <div class="col-sm-3 padd">
+            Cryptocurrencies: <strong><a href="#">{{global.active_currencies}}</a></strong>
+            / Markets: <strong><a href="#">{{global.active_markets}}</a></strong>
+        </div>
+        <div class="col-sm-6 text-center padd">
+            Market Cap: <strong><a href="#">{{global.total_24h_volume_usd}}</a></strong>
+            / 24h Vol: <strong><a href="#">{{global.total_market_cap_usd}}</a></strong>
+            / BTC Dominance: <strong><a href="#">{{global.bitcoin_percentage_of_market_cap}}%</a></strong>
+        </div>
+        <div class="col-sm-3 text-right paddright">
+          <div class="dropdown">
+            <button type="button" class="dropdown-toggle select" data-toggle="dropdown">
+              <span>MXN</span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu box" role="menu">
+              <li class="dropdown-item inline" *ngFor="let data of convertCurrency"><a>{{data}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<p class="para">Cryptocurrency Market Capitalizations</p>
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Market Cap
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">All</a>
+              <a class="dropdown-item" href="#">Coins</a>
+              <a class="dropdown-item" href="#">Tokens</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Trade Volume
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">24 Hour Volume Rankings (Currency)</a>
+              <a class="dropdown-item" href="#">24 Hour Volume Rankings (Exchange)</a>
+              <a class="dropdown-item" href="#">Monthly Volume Rankings (Currency)</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Trending
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Gainers and Losers</a>
+              <a class="dropdown-item" href="#">Recently Addedn</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tools
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Global Charts</a>
+            <a class="dropdown-item" href="#">Historical Snapshots</a>
+            <a class="dropdown-item" href="#">Currency Converter Calculator</a>
+            <a class="dropdown-item" href="#">Website Widgets</a>
+
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" #searchForm="ngForm">
+        <ul class="suggestions dropdown-menu" *ngIf="filteredList.length > 0">
+            <p class="colorgrey">Cryptocurrencies</p>
+            <li *ngFor="let key of filteredList" class="key" (click)="onSearch(key)">{{key}}</li>
+        </ul>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" autocomplete="off" [(ngModel)]="search"
+          (ngModelChange)="filter($event)">
+        <button type="button" class="btn btn-primary" (click)="onSearch(search)">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+  </nav>
+</div>

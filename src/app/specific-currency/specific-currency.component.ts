@@ -54,22 +54,17 @@ export class SpecificCurrencyComponent implements OnInit  {
       Highcharts.stockChart('container', {
 
         rangeSelector: {
-            selected: 5
+            selected: 4
         },
         title: {
             text: this.currencyName.toUpperCase() + ' ' + 'CHART',
             align: 'left',
             x: 0
         },
-        yAxis: {
+        yAxis: [
+          {
             title: {
                 text: '<span style="color:#009e73;font-weight:bold;fill:#009e73;">Price (USD)</span>'
-            },
-            crosshair: {
-                label: {
-                    enabled: true,
-                    format: '{value:.2f}'
-                }
             },
             labels: {
                 align: 'left',
@@ -81,9 +76,29 @@ export class SpecificCurrencyComponent implements OnInit  {
                 width: 2,
                 color: 'silver'
             }]
+        }, {
+            title: {
+                text: '<span style="color:orange;font-weight:bold;fill:orange;">Price (BTC)</span>'
+            },
+            labels: {
+                align: 'left',
+                y: 6,
+                x: 2
+            },
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'silver'
+            }]
+        }, {
+            title: {
+                text: '<span style="color:#219dfd;font-weight:bold;fill:#219dfd;">Market Cap</span>'
+            },
+            opposite: false
+        }],
+        legend: {
+            enabled: true
         },
-
-
         plotOptions: {
             series: {
                 compare: 'percent',

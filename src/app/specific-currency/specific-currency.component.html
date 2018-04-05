@@ -7,7 +7,7 @@
 
 <div class="col-md-8">
   <div *ngIf="currency" class="padd">
-    <span style="font-size:24px">{{currency.price_usd | currency:'USD'}}</span> {{currencyType| uppercase}} 
+    <span style="font-size:24px">{{currency.price_usd | currency:'USD'}}</span> {{currencyType| uppercase}}
     <span [ngStyle]="{'color':currency.percent_change_24h > 0 ? 'green':'red'}">
       ({{currency.percent_change_24h}} %)
     </span>
@@ -40,4 +40,4 @@
     <span class="loading"></span>
   </div>
 </div>
-<div id="container" class="col-md-10" style="height: 500px"></div>
+<div id="container" class="col-md-10" style="height: 500px; margin-bottom:100px;"></div>

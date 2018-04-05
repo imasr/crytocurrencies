@@ -24,7 +24,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true })
   ],
   providers: [
     {
@@ -36,4 +36,4 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

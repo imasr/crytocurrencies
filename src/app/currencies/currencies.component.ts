@@ -5,9 +5,9 @@ import { NgForm } from '@angular/forms';
 import * as _ from 'lodash';
 
 @Component({
-  selector: "app-currencies",
-  templateUrl: "./currencies.component.html",
-  styleUrls: ["./currencies.component.css"]
+  selector: 'app-currencies',
+  templateUrl: './currencies.component.html',
+  styleUrls: ['./currencies.component.css']
 })
 export class CurrenciesComponent implements OnInit {
   limit = 100;
@@ -19,7 +19,7 @@ export class CurrenciesComponent implements OnInit {
 
   ngOnInit() {
     const data = `?start=${this.start}&limit=${this.limit}`;
-    this.getCurrencies(data)
+    this.getCurrencies(data);
   }
   getCurrencies(data) {
     this.apiService.currencies(data).subscribe(res => {
@@ -31,13 +31,14 @@ export class CurrenciesComponent implements OnInit {
   next() {
     this.start = this.start + 100;
     const data = `?start=${this.start}&limit=${this.limit}`;
-    this.getCurrencies(data) 
-
+    this.getCurrencies(data) ;
   }
   previous() {
     this.start = this.start - 100;
     const data = `?start=${this.start}&limit=${this.limit}`;
     this.getCurrencies(data);
+  }
+  all() {
 
   }
 

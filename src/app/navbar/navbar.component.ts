@@ -21,19 +21,18 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
       this.convertCurrency = Config['currencyData'];
       this.apiEvent.componentMehtodCalled$.subscribe(res => {
-        let array=[];
+        const array = [];
         _.forEach(res, (val, key) => {
             array.push(val.id);
         });
-        this.currencyList=array;
-        console.log(this.currencyList);        
-      })
+        this.currencyList = array;
+      });
       this.apiEvent.globalData().subscribe(res => {
-          this.global=res;
-      })
+          this.global = res;
+      });
   }
   filter(event) {
-    if (event !== "") {
+    if (event !== '') {
       this.filteredList = this.currencyList.filter(function(el) {
           return el.toLowerCase().indexOf(event.toLowerCase()) > -1;
         }.bind(this)
@@ -41,10 +40,8 @@ export class NavbarComponent implements OnInit {
     } else {
       this.filteredList = [];
     }
-    console.log(this.filteredList)
   }
   onSearch(data) {
-    console.log(data);
     this.search = data;
     this.filteredList = [];
     this.router.navigate(['currencies', this.search]);

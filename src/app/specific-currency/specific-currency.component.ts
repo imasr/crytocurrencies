@@ -33,19 +33,16 @@ export class SpecificCurrencyComponent implements OnInit  {
   }
 
   graphData(currency) {
-    this.loader=true;
-    let seriesOptions = [];
+    this.loader = true;
+    const seriesOptions = [];
     let seriesCounter = 0;
-    let names = ['market_cap_by_available_supply', 'price_btc', 'price_btc', 'volume_usd'];
+    const names = ['market_cap_by_available_supply', 'price_btc', 'price_btc', 'volume_usd'];
 
     this.apiService.chart(currency).subscribe(data => {
         _.forEach(names, (name, key) => {
              seriesOptions[key] = { name: name, data: data[name] };
-
              seriesCounter += 1;
-
              if (seriesCounter === names.length) {
-               console.log(seriesOptions);
                this.chartOn(seriesOptions);
              }
         });
@@ -53,17 +50,17 @@ export class SpecificCurrencyComponent implements OnInit  {
   }
 
   chartOn(seriesOptions) {
-      this.loader=false;
+      this.loader = false;
       Highcharts.stockChart('container', {
 
         rangeSelector: {
             selected: 5
         },
         title: {
-        text: this.currencyName.toUpperCase() + ' ' + 'CHART',
-        align: 'left',
-        x: 0
-    },
+            text: this.currencyName.toUpperCase() + ' ' + 'CHART',
+            align: 'left',
+            x: 0
+        },
         yAxis: {
             title: {
                 text: '<span style="color:#009e73;font-weight:bold;fill:#009e73;">Price (USD)</span>'

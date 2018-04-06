@@ -1,5 +1,5 @@
-# broctagon Issue with first
-There would be CORS issue with browser- to fiadd CORS extention to browser for now to run app properly
+# Issue
+There would be CORS issue when run in browser- to fiadd CORS extention to browser for now to run app properly
 
 
 

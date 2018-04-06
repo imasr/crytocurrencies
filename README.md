@@ -1,5 +1,5 @@
 # Issue
-There would be CORS issue when run in browser- to fiadd CORS extention to browser for now to run app properly
+There would be CORS issue when run in browser- to fix add CORS extention to browser for now to run app properly
 
 
 
